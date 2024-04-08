@@ -18,6 +18,7 @@ class LevelFactory extends Factory
     {
         return [
             'title' => fake()->words(asText: true),
+            'color' => fake()->hexColor(),
             'sort' => 0,
         ];
     }

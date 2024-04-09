@@ -48,6 +48,12 @@ class AlbumResource extends Resource
                             ->label('Nome')
                             ->required()
                             ->maxLength(255),
+                        Forms\Components\Select::make('tierlists')
+                            ->relationship('tierlists', 'name')
+                            ->searchable()
+                            ->preload()
+                            ->multiple()
+                            ->columnSpanFull(),
                         EmbedInput::make('embed')
                             ->live()
                             ->required()

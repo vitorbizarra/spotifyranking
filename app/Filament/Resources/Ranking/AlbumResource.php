@@ -121,9 +121,12 @@ class AlbumResource extends Resource
                                 ->searchable()
                                 ->alignRight(),
                         ]),
-                    Tables\Columns\TextColumn::make('level.title')
+                    Tables\Columns\TextColumn::make('level')
                         ->label('Ranking')
-                        ->numeric(),
+                        ->numeric()
+                        ->badge()
+                        ->formatStateUsing(fn ($state) => $state->title)
+                        ->color(fn ($state) => Color::hex($state->color)),
                 ])->space(2),
             ])
             ->contentGrid(['md' => 3])

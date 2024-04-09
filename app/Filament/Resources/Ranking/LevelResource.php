@@ -20,9 +20,7 @@ class LevelResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-s-sparkles';
 
-    protected static ?string $modelLabel = 'nível';
-
-    protected static ?string $pluralModelLabel = 'níveis';
+    protected static ?string $modelLabel = 'ranking';
 
     protected static ?string $recordTitleAttribute = 'title';
 

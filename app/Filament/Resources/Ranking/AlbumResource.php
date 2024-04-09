@@ -107,7 +107,7 @@ class AlbumResource extends Resource
                     Tables\Columns\Layout\Grid::make()
                         ->columns(6)
                         ->schema([
-                            Tables\Columns\TextColumn::make('title')
+                            Tables\Columns\TextColumn::make('albumTitle')
                                 ->label('Nome')
                                 ->searchable()
                                 ->columnSpan(5)
@@ -123,7 +123,8 @@ class AlbumResource extends Resource
                         ]),
                     Tables\Columns\TextColumn::make('level.title')
                         ->label('Ranking')
-                        ->numeric(),
+                        ->badge()
+                        ->color(fn ($record) => Color::hex($record->level->color)),
                 ])->space(2),
             ])
             ->contentGrid(['md' => 3])
@@ -138,6 +139,7 @@ class AlbumResource extends Resource
                     ->label('Ranking')
                     ->orderQueryUsing(
                         fn (Builder $query, ?string $direction) => $query
+                            ->selectRaw('albums.*, albums.title as albumTitle, levels.*')
                             ->join('levels', 'levels.id', '=', 'albums.level_id')
                             ->orderBy('levels.sort', $direction)
                     )

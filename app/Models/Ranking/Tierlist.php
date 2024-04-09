@@ -18,6 +18,6 @@ class Tierlist extends Model
 
     public function albums(): BelongsToMany
     {
-        return $this->belongsToMany(Album::class);
+        return $this->belongsToMany(Album::class)->using(AlbumTierlist::class);
     }
 }

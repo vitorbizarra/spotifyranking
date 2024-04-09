@@ -19,11 +19,6 @@ class Album extends Model
         'sort',
     ];
 
-    public function level(): BelongsTo
-    {
-        return $this->belongsTo(Level::class);
-    }
-
     public function tierlists(): BelongsToMany
     {
         return $this->belongsToMany(Tierlist::class);

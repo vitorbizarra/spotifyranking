@@ -14,8 +14,6 @@ class AlbumSeeder extends Seeder
      */
     public function run(): void
     {
-        Level::each(function ($level) {
-            $level->albums()->saveMany(Album::factory(3)->make());
-        });
+        Album::factory(20)->create();
     }
 }

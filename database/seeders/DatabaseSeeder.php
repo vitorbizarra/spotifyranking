@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             LevelSeeder::class,
             AlbumSeeder::class,
+            TierlistSeeder::class,
         ]);
     }
 }

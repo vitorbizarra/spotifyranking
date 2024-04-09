@@ -43,6 +43,12 @@ class TierlistResource extends Resource
                     ->numeric()
                     ->sortable()
                     ->badge(),
+                Tables\Columns\TextColumn::make('albums_count')
+                    ->label('Qtd. Álbuns')
+                    ->numeric()
+                    ->sortable()
+                    ->badge()
+                    ->counts('albums'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('Criado em')
                     ->dateTime('d/m/Y H:i')

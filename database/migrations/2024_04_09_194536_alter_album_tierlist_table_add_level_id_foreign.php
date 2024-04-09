@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('album_tierlist', function (Blueprint $table) {
-            $table->foreignId('level_id')->constrained()->cascadeOnDelete()->after('tierlist_id');
+            $table->foreignId('level_id')->after('tierlist_id')->constrained()->cascadeOnDelete();
         });
     }
 

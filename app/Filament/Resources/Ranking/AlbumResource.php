@@ -107,7 +107,7 @@ class AlbumResource extends Resource
                     Tables\Columns\Layout\Grid::make()
                         ->columns(6)
                         ->schema([
-                            Tables\Columns\TextColumn::make('albumTitle')
+                            Tables\Columns\TextColumn::make('title')
                                 ->label('Nome')
                                 ->searchable()
                                 ->columnSpan(5)
@@ -139,7 +139,7 @@ class AlbumResource extends Resource
                     ->label('Ranking')
                     ->orderQueryUsing(
                         fn (Builder $query, ?string $direction) => $query
-                            ->selectRaw('albums.*, albums.title as albumTitle, levels.*')
+                            ->selectRaw('albums.*, levels.id as levelId')
                             ->join('levels', 'levels.id', '=', 'albums.level_id')
                             ->orderBy('levels.sort', $direction)
                     )

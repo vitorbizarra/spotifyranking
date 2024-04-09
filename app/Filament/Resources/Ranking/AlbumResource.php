@@ -16,6 +16,7 @@ use Filament\Resources\Resource;
 use Filament\Support\Colors\Color;
 use Filament\Support\Enums\FontWeight;
 use Filament\Tables;
+use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -105,11 +106,9 @@ class AlbumResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
-            ->defaultGroup('level_id')
             ->columns([
                 Tables\Columns\Layout\Stack::make([
                     EmbedColumn::make('embed'),
-
                     Tables\Columns\Layout\Grid::make()
                         ->columns(6)
                         ->schema([
@@ -127,7 +126,7 @@ class AlbumResource extends Resource
                                 ->searchable()
                                 ->alignRight(),
                         ]),
-                    Tables\Columns\TextColumn::make('level')
+                    Tables\Columns\TextColumn::make('tierlists.0.pivot.level')
                         ->label('Ranking')
                         ->numeric()
                         ->badge()
@@ -143,14 +142,9 @@ class AlbumResource extends Resource
                 'all',
             ])
             ->groups([
-                Tables\Grouping\Group::make('level_id')
-                    ->label('Ranking')
-                    ->orderQueryUsing(
-                        fn (Builder $query, ?string $direction) => $query
-                            ->join('levels', 'levels.id', '=', 'albums.level_id')
-                            ->orderBy('levels.sort', $direction)
-                    )
-                    ->getTitleFromRecordUsing(fn ($record): ?string => $record->level->title),
+                // Tables\Grouping\Group::make('tierlist.level_id')
+                //     ->label('Ranking')
+                //     ->getTitleFromRecordUsing(fn ($record): ?string => $record->level->title),
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),

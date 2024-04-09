@@ -22,16 +22,21 @@ class ListAlbums extends ListRecords
 
     public function getTabs(): array
     {
-        $tabs = ['all' => Tab::make()->label('Todos')];
-
         $tierlists = Tierlist::orderBy('sort')->orderBy('name')->get();
 
         foreach ($tierlists as $tierlist) {
             $tabs[str($tierlist->name)->slug()->toString()] = Tab::make()
                 ->label($tierlist->name)
-                ->modifyQueryUsing(fn (Builder $query) => $query->whereHas('tierlists', fn ($query) => $query->where('tierlist_id', $tierlist->id)));
+                ->modifyQueryUsing(fn (Builder $query) => $query->with('tierlists')->whereHas('tierlists', fn ($query) => $query->where('tierlist_id', $tierlist->id)));
         }
 
         return $tabs;
+    }
+
+    public function getDefaultActiveTab(): string | int | null
+    {
+        $firstTierlist = Tierlist::orderBy('sort')->orderBy('name')->first();
+
+        return str($firstTierlist->name)->slug()->toString();
     }
 }

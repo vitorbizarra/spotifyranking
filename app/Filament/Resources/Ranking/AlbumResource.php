@@ -151,9 +151,10 @@ class AlbumResource extends Resource
                 'all',
             ])
             ->groups([
-                // Tables\Grouping\Group::make('tierlist.level_id')
+                // Tables\Grouping\Group::make('albumTierlist.0.level_id')
                 //     ->label('Ranking')
-                //     ->getTitleFromRecordUsing(fn ($record): ?string => $record->level->title),
+                //     ->groupQueryUsing(fn ($query) => $query->limit(1))
+                //     ->getTitleFromRecordUsing(fn ($record): ?string => $record->tierlists()->first()->pivot->level->title),
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),

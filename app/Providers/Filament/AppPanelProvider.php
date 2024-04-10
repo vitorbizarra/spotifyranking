@@ -61,7 +61,7 @@ class AppPanelProvider extends PanelProvider
             )
             ->plugins([
                 \LaraZeus\Boredom\BoringAvatarPlugin::make()
-                    ->colors(['F72585', '7209B7', '3A0CA3', '4361EE', '4CC9F0'])
+                    ->colors(['F72585', '7209B7', '3A0CA3', '4361EE', '4CC9F0']),
             ]);
     }
 }

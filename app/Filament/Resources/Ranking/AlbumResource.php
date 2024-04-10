@@ -3,7 +3,6 @@
 namespace App\Filament\Resources\Ranking;
 
 use App\Filament\Resources\Ranking\AlbumResource\Pages;
-use App\Filament\Resources\Ranking\AlbumResource\RelationManagers;
 use App\Forms\Components\EmbedInput;
 use App\Infolists\Components\EmbedEntry;
 use App\Models\Ranking\Album;
@@ -17,7 +16,6 @@ use Filament\Resources\Resource;
 use Filament\Support\Colors\Color;
 use Filament\Support\Enums\FontWeight;
 use Filament\Tables;
-use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;

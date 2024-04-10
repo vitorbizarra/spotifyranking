@@ -34,7 +34,7 @@ class ListAlbums extends ListRecords
         return $tabs;
     }
 
-    public function getDefaultActiveTab(): string | int | null
+    public function getDefaultActiveTab(): string|int|null
     {
         $firstTierlist = Tierlist::orderBy('sort')->orderBy('name')->first();
 

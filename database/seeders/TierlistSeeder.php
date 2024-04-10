@@ -5,7 +5,6 @@ namespace Database\Seeders;
 use App\Models\Ranking\Album;
 use App\Models\Ranking\Level;
 use App\Models\Ranking\Tierlist;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class TierlistSeeder extends Seeder

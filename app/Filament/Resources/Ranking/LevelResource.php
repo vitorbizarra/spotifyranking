@@ -3,7 +3,6 @@
 namespace App\Filament\Resources\Ranking;
 
 use App\Filament\Resources\Ranking\LevelResource\Pages;
-use App\Filament\Resources\Ranking\LevelResource\RelationManagers;
 use App\Models\Ranking\Level;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -11,8 +10,6 @@ use Filament\Resources\Resource;
 use Filament\Support\Enums\MaxWidth;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class LevelResource extends Resource
 {

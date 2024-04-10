@@ -3,8 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Ranking\Album;
-use App\Models\Ranking\Level;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class AlbumSeeder extends Seeder

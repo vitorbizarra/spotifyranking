@@ -3,7 +3,6 @@
 namespace App\Filament\Resources\Ranking;
 
 use App\Filament\Resources\Ranking\TierlistResource\Pages;
-use App\Filament\Resources\Ranking\TierlistResource\RelationManagers;
 use App\Models\Ranking\Tierlist;
 use Filament\Forms;
 use Filament\Forms\Form;

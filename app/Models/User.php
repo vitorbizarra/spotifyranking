@@ -13,7 +13,7 @@ use LaraZeus\Boredom\Concerns\HasBoringAvatar;
 
 class User extends Authenticatable implements FilamentUser
 {
-    use HasFactory, Notifiable, HasBoringAvatar;
+    use HasBoringAvatar, HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.

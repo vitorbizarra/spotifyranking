@@ -25,6 +25,10 @@ class Album extends Model
         return $this->belongsToMany(Tierlist::class)->using(AlbumTierlist::class)->withPivot('level_id');
     }
 
+    /**
+     * Método necessário para utilizar um relacionamento ManyToMany no Repeater
+     * @link https://filamentphp.com/docs/3.x/forms/fields/repeater#integrating-with-a-belongstomany-eloquent-relationship
+     */
     public function albumTierlist(): HasMany
     {
         return $this->hasMany(AlbumTierlist::class);

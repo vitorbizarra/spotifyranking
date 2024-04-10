@@ -38,28 +38,31 @@ class AlbumResource extends Resource
         return $form
             ->schema([
                 Forms\Components\Section::make()
-                    ->columns(2)
                     ->schema([
-                        Forms\Components\Select::make('level_id')
-                            ->label('Ranking')
-                            ->required()
-                            ->relationship('level', 'title')
-                            ->native(false),
                         Forms\Components\TextInput::make('title')
                             ->label('Nome')
                             ->required()
                             ->maxLength(255),
-                        Forms\Components\Select::make('tierlists')
-                            ->relationship('tierlists', 'name')
-                            ->searchable()
-                            ->preload()
-                            ->multiple()
-                            ->columnSpanFull(),
                         EmbedInput::make('embed')
                             ->live()
                             ->required()
-                            ->autosize()
-                            ->columnSpanFull(),
+                            ->autosize(),
+                        Forms\Components\Repeater::make('albumTierlist')
+                            ->label('Tierlists')
+                            ->relationship('albumTierlist')
+                            ->columns(2)
+                            ->grid(2)
+                            ->schema([
+                                Forms\Components\Select::make('tierlist_id')
+                                    ->relationship('tierlist', 'name')
+                                    ->searchable()
+                                    ->preload(),
+                                Forms\Components\Select::make('level_id')
+                                    ->label('Ranking')
+                                    ->relationship('level', 'title')
+                                    ->searchable()
+                                    ->preload(),
+                            ]),
                     ]),
             ]);
     }
@@ -69,17 +72,23 @@ class AlbumResource extends Resource
         return $infolist
             ->schema([
                 Infolists\Components\Section::make()
-                    ->columns(2)
                     ->schema([
                         Infolists\Components\TextEntry::make('title')
                             ->label('Título'),
-                        Infolists\Components\TextEntry::make('level')
-                            ->label('Ranking')
-                            ->badge()
-                            ->formatStateUsing(fn ($state) => $state->title)
-                            ->color(fn ($state) => Color::hex($state->color)),
-                        EmbedEntry::make('embed')
-                            ->columnSpanFull(),
+                        EmbedEntry::make('embed'),
+
+                        Infolists\Components\RepeatableEntry::make('albumTierlist')
+                            ->label('Tierlists')
+                            ->grid(2)
+                            ->columns(2)
+                            ->schema([
+                                Infolists\Components\TextEntry::make('tierlist.name'),
+                                Infolists\Components\TextEntry::make('level')
+                                    ->label('Ranking')
+                                    ->badge()
+                                    ->formatStateUsing(fn ($state) => $state->title)
+                                    ->color(fn ($state) => Color::hex($state->color)),
+                            ]),
 
                         Infolists\Components\Fieldset::make('Informações Adicionais')
                             ->columns(3)

@@ -27,9 +27,9 @@ class AlbumResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-s-musical-note';
 
-    protected static ?string $modelLabel = 'álbum';
+    protected static ?string $modelLabel = 'item';
 
-    protected static ?string $pluralModelLabel = 'álbuns';
+    protected static ?string $pluralModelLabel = 'itens';
 
     protected static ?string $recordTitleAttribute = 'title';
 

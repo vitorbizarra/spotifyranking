@@ -27,7 +27,8 @@ class ListAlbums extends ListRecords
         foreach ($tierlists as $tierlist) {
             $tabs[str($tierlist->name)->slug()->toString()] = Tab::make()
                 ->label($tierlist->name)
-                ->modifyQueryUsing(fn (Builder $query) => $query->with('tierlists')->whereHas('tierlists', fn ($query) => $query->where('tierlist_id', $tierlist->id)));
+                ->modifyQueryUsing(fn (Builder $query) => $query->with('tierlists', fn ($query) => $query->where('tierlist_id', $tierlist->id)->limit(1))
+                    ->whereHas('tierlists', fn ($query) => $query->where('tierlist_id', $tierlist->id)));
         }
 
         return $tabs;

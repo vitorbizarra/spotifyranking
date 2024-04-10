@@ -7,6 +7,7 @@ use App\Filament\Resources\Ranking\AlbumResource\RelationManagers;
 use App\Forms\Components\EmbedInput;
 use App\Infolists\Components\EmbedEntry;
 use App\Models\Ranking\Album;
+use App\Models\Ranking\AlbumTierlist;
 use App\Tables\Columns\EmbedColumn;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -131,7 +132,6 @@ class AlbumResource extends Resource
                             Tables\Columns\TextColumn::make('sort')
                                 ->label('Posição')
                                 ->badge()
-                                ->sortable()
                                 ->searchable()
                                 ->alignRight(),
                         ]),
@@ -157,7 +157,8 @@ class AlbumResource extends Resource
                 //     ->getTitleFromRecordUsing(fn ($record): ?string => $record->tierlists()->first()->pivot->level->title),
             ])
             ->filters([
-                Tables\Filters\TrashedFilter::make(),
+                Tables\Filters\TrashedFilter::make()
+                    ->native(false),
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),

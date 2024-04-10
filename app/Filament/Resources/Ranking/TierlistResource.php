@@ -66,7 +66,8 @@ class TierlistResource extends Resource
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                Tables\Filters\TrashedFilter::make(),
+                Tables\Filters\TrashedFilter::make()
+                    ->native(false),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
